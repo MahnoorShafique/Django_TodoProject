@@ -6,5 +6,6 @@ from todo_app.views import TodoView
 
 urlpatterns = [
 
-     path('abc/',TodoView.as_view(),name="abc")
+     path('abc/',TodoView.as_view(),name="abc"),
+    
 ]
