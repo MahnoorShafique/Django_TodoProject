@@ -2,13 +2,6 @@ import uuid
 from django.db import models
 
 # Create your models here.
-# from .constants import STATUS_CHOICES
-
-class StatusChoices(models.TextChoices):
-
-    PN = 'pn', 'pending'
-    BL = 'bl', 'block'
-    DN = 'dn', 'done'
 
 class Todo(models.Model):
     STATUS_CHOICES=[

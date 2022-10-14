@@ -54,14 +54,56 @@ class TodoView(View):
         
     def get(self,request):
         id_=request.GET.get('id')
-        obj=Todo.objects.filter(task_id=id_)
+        if id_ is not None:
+            obj=Todo.objects.filter(task_id=id_)       
+        else:
+            obj=Todo.objects.all()
         qs_json = serializers.serialize('json', obj)
         return HttpResponse(qs_json, content_type='application/json')
-        # to_return={
-        #     "data":"abc"
-        # }
-    def get(self,request):
-        # id_=request.GET.get('id')
-        obj=Todo.objects.all()
-        qs_json = serializers.serialize('json', obj)
-        return HttpResponse(qs_json, content_type='application/json')
+    def patch(self,request):
+        id_=request.GET.get('id')
+        data_dict=json.loads(request.body)
+        date_data = data_dict.get("due_date",0)
+        try:
+            if (isinstance(date_data, str)):
+                converted_date = parser.parse(date_data)
+                data_str = str(converted_date)
+                if len(data_str) > 10:
+                        data_str = data_str[0:10]
+                data_dict.update({'due_date':data_str})
+            if id_ is not None:
+                model_obj=Todo.objects.get(task_id=id_)
+                for attr, value in data_dict.items():
+                        setattr(model_obj, attr, value)
+                model_obj.save()
+                return_data={
+                    "msg":f'Data updated against {model_obj.task_name}',
+                    "status":True
+                }
+                return JsonResponse(return_data)
+        except Exception as e:
+            return {}
+    def delete(self,request):
+        id_=request.GET.get('id')
+        try:
+            obj=Todo.objects.get(task_id=id_)
+            if obj:
+                obj.delete()
+                response={
+                    "msg":"Data with id :{} deleted successfully".format(obj.task_id)
+                }
+            else:
+                response={
+                    "msg":"NO id found in db"
+                }
+            return HttpResponse(response, content_type='application/json')      
+        except Exception as e:
+              response={
+                    "msg":"Id does not exists in db"
+                }
+              return JsonResponse(response)
+       
+              
+        
+        
+
