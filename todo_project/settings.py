@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -109,38 +110,39 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-log_directory = os.path.join(os.getcwd(), 'logs/error2.log')  # used in LOGGING, to store the logs
-LOGGING={
+# used in LOGGING, to store the logs
+log_directory = os.path.join(os.getcwd(), 'logs/error2.log')
+LOGGING = {
     'version': 1,
-     'disable_existing_loggers': False,
+    'disable_existing_loggers': False,
     # "loggers":{
     #     "django":{
-    #         "handlers":["file"],#this name is the file in handles, means logger will call handler 
+    #         "handlers":["file"],#this name is the file in handles, means logger will call handler
     #         "level":"DEBUG",
     #          'propagate': False
     #     }
     # },
-       'loggers': {
+    'loggers': {
         'todo_app': {
             'handlers': ['file'],
             'propagate': False,
         }
-        
-       
+
+
 
     },
-    "handlers":{
-        "file":{
-            "level":"INFO",
-            "class":"logging.FileHandler",
-            "filename":log_directory,
-            "formatter":"simple_m"   #handler will call formatter
+    "handlers": {
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": log_directory,
+            "formatter": "simple_m"  # handler will call formatter
         }
     },
-    "formatters":{
-        "simple_m":{
-            "format":'{name} {funcName} {levelname} {levelno} {lineno} {asctime} {module} {process:d} {thread:d} {message}',
-            "style":'{'
+    "formatters": {
+        "simple_m": {
+            "format": '{name} {funcName} {levelname} {levelno} {lineno} {asctime} {module} {process:d} {thread:d} {message}',
+            "style": '{'
         }
     }
 }
@@ -172,25 +174,23 @@ LOGGING={
 #         },
 #     },
 
-    # 'handlers': {
-    #     'file': {
-    #         'class': 'logging.handlers.TimedRotatingFileHandler',
-    #         'filename': log_directory,
-    #         'when': 'D',
-    #         'interval': 1,
-    #         'backupCount': 90,
-    #         'formatter': 'verbose'
-    #     },
-    # },
-    # 'loggers': {
-    #     'todo_project': {
-    #         'handlers': ['file'],
-    #         'propagate': False,
-    #     }
-        
-       
+# 'handlers': {
+#     'file': {
+#         'class': 'logging.handlers.TimedRotatingFileHandler',
+#         'filename': log_directory,
+#         'when': 'D',
+#         'interval': 1,
+#         'backupCount': 90,
+#         'formatter': 'verbose'
+#     },
+# },
+# 'loggers': {
+#     'todo_project': {
+#         'handlers': ['file'],
+#         'propagate': False,
+#     }
 
-    # },
+# },
 # }
 
 # Internationalization

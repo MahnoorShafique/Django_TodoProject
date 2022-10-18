@@ -1,0 +1,9 @@
+{
+    "launch": {
+        "python.linting.pep8Enabled": true,
+    "python.linting.pylintEnabled": true,
+        "configurations": [],
+        "compounds": []
+
+    }
+}
