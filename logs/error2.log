@@ -1,0 +1,13 @@
+django.utils.autoreload run_with_reloader INFO 20 637 2022-10-18 06:12:39,482 autoreload 59955 140379558203392 Watching for file changes with StatReloader
+django.server log_message INFO 20 161 2022-10-18 06:12:44,007 basehttp 59955 140379078784576 "DELETE /todo/abc/?id=9a7a7c35-9f1b-4a81-bc35-b1d24f751f5 HTTP/1.1" 200 35
+django.utils.autoreload trigger_reload INFO 20 251 2022-10-18 06:13:08,114 autoreload 59955 140379558203392 /home/mahnoor/PycharmProjects/todo_project/todo_app/views.py changed, reloading.
+django.utils.autoreload run_with_reloader INFO 20 637 2022-10-18 06:13:10,574 autoreload 60241 140524176179200 Watching for file changes with StatReloader
+django.utils.autoreload run_with_reloader INFO 20 637 2022-10-18 06:13:15,137 autoreload 60373 140086883061760 Watching for file changes with StatReloader
+django delete ERROR 40 100 2022-10-18 06:13:18,384 views 60373 140086331045440 ['“9a7a7c35-9f1b-4a81-bc35-b1d24f751f5” is not a valid UUID.']
+django.server log_message INFO 20 161 2022-10-18 06:13:20,357 basehttp 60373 140086331045440 "DELETE /todo/abc/?id=9a7a7c35-9f1b-4a81-bc35-b1d24f751f5 HTTP/1.1" 200 35
+django.utils.autoreload run_with_reloader INFO 20 637 2022-10-18 06:18:27,699 autoreload 62729 140297137209344 Watching for file changes with StatReloader
+django.utils.autoreload run_with_reloader INFO 20 637 2022-10-18 06:18:41,016 autoreload 62867 140621523480576 Watching for file changes with StatReloader
+django.utils.autoreload trigger_reload INFO 20 251 2022-10-18 06:20:30,307 autoreload 62867 140621523480576 /home/mahnoor/PycharmProjects/todo_project/todo_app/urls.py changed, reloading.
+django.utils.autoreload run_with_reloader INFO 20 637 2022-10-18 06:20:30,783 autoreload 63876 140631382642688 Watching for file changes with StatReloader
+django.utils.autoreload trigger_reload INFO 20 251 2022-10-18 06:26:20,329 autoreload 63876 140631382642688 /home/mahnoor/PycharmProjects/todo_project/todo_project/settings.py changed, reloading.
+todo_app.views delete ERROR 40 103 2022-10-18 06:27:15,538 views 66758 140413652432448 ['“9a7a7c35-9f1b-4a81-bc35-b1d24f751f5” is not a valid UUID.']

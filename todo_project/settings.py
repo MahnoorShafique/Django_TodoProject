@@ -9,12 +9,11 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -110,6 +109,89 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+log_directory = os.path.join(os.getcwd(), 'logs/error2.log')  # used in LOGGING, to store the logs
+LOGGING={
+    'version': 1,
+     'disable_existing_loggers': False,
+    # "loggers":{
+    #     "django":{
+    #         "handlers":["file"],#this name is the file in handles, means logger will call handler 
+    #         "level":"DEBUG",
+    #          'propagate': False
+    #     }
+    # },
+       'loggers': {
+        'todo_app': {
+            'handlers': ['file'],
+            'propagate': False,
+        }
+        
+       
+
+    },
+    "handlers":{
+        "file":{
+            "level":"INFO",
+            "class":"logging.FileHandler",
+            "filename":log_directory,
+            "formatter":"simple_m"   #handler will call formatter
+        }
+    },
+    "formatters":{
+        "simple_m":{
+            "format":'{name} {funcName} {levelname} {levelno} {lineno} {asctime} {module} {process:d} {thread:d} {message}',
+            "style":'{'
+        }
+    }
+}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '{name} {funcName} {levelname} {levelno} {lineno} {asctime} {module} {process:d} {thread:d} {message}',
+#             'style': '{',
+#         },
+#         'simple': {
+#             'format': '{name} {message}',
+#             'style': '{',
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'logs/debug2.log',
+#         },
+#     },
+#     'loggers': {
+#         '': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+
+    # 'handlers': {
+    #     'file': {
+    #         'class': 'logging.handlers.TimedRotatingFileHandler',
+    #         'filename': log_directory,
+    #         'when': 'D',
+    #         'interval': 1,
+    #         'backupCount': 90,
+    #         'formatter': 'verbose'
+    #     },
+    # },
+    # 'loggers': {
+    #     'todo_project': {
+    #         'handlers': ['file'],
+    #         'propagate': False,
+    #     }
+        
+       
+
+    # },
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

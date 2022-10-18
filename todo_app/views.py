@@ -1,17 +1,23 @@
-from unicodedata import name
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, JsonResponse
-from django.views import View
-from .models import Todo
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_protect
 import json
+import logging
+from unicodedata import name
+
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+
+from .models import Todo
+
+logger = logging.getLogger(__name__)
 from dateutil import parser
 from django.core import serializers
+
+
 @method_decorator(csrf_exempt, name='dispatch')
 class TodoView(View):
-    
+    """Creating todo model"""
     def post(self, request):
         data_dict=json.loads(request.body)
         date_data = data_dict["due_date"]
@@ -30,6 +36,7 @@ class TodoView(View):
             }
             return JsonResponse(return_data)
         except Exception as e:
+            logger.error(str(e))
             response={
                 "msg":"an error occured",
                 'status':False
@@ -39,14 +46,24 @@ class TodoView(View):
         
         
     def get(self,request):
+        """ Fetching all records or single records"""
         id_=request.GET.get('id')
-        if id_ is not None:
-            obj=Todo.objects.filter(task_id=id_)       
-        else:
-            obj=Todo.objects.all()
-        qs_json = serializers.serialize('json', obj)
-        return HttpResponse(qs_json, content_type='application/json')
+        try:
+            if id_ is not None:
+                obj=Todo.objects.filter(task_id=id_)       
+            else:
+                obj=Todo.objects.all()
+            qs_json = serializers.serialize('json', obj)
+            return HttpResponse(qs_json, content_type='application/json')
+        except Exception as e:
+            logger.error(str(e))
+            response={
+                "msg":str(e),
+                "status":True
+            }
+            return JsonResponse(response)
     def patch(self,request):
+        """Updating some records"""
         id_=request.GET.get('id')
         data_dict=json.loads(request.body)
         date_data = data_dict.get("due_date",0)
@@ -68,8 +85,10 @@ class TodoView(View):
                 }
                 return JsonResponse(return_data)
         except Exception as e:
+            logger.error(str(e))
             return {}
     def delete(self,request):
+        """"Deleting rocord based on its id. """
         id_=request.GET.get('id')
         try:
             obj=Todo.objects.get(task_id=id_)
@@ -84,12 +103,11 @@ class TodoView(View):
                 }
             return HttpResponse(response, content_type='application/json')      
         except Exception as e:
-              response={
+            logger.error(str(e))
+            response={
                     "msg":"Id does not exists in db"
                 }
-              return JsonResponse(response)
+            return JsonResponse(response)
        
               
-        
-        
-
+       

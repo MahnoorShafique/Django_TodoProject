@@ -1,8 +1,7 @@
 from django.urls import include, path
+
 # import todo_app.views
 from todo_app.views import TodoView
-
-
 
 urlpatterns = [
 
