@@ -115,13 +115,7 @@ log_directory = os.path.join(os.getcwd(), 'logs/error2.log')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    # "loggers":{
-    #     "django":{
-    #         "handlers":["file"],#this name is the file in handles, means logger will call handler
-    #         "level":"DEBUG",
-    #          'propagate': False
-    #     }
-    # },
+
     'loggers': {
         'todo_app': {
             'handlers': ['file'],
@@ -146,52 +140,7 @@ LOGGING = {
         }
     }
 }
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'verbose': {
-#             'format': '{name} {funcName} {levelname} {levelno} {lineno} {asctime} {module} {process:d} {thread:d} {message}',
-#             'style': '{',
-#         },
-#         'simple': {
-#             'format': '{name} {message}',
-#             'style': '{',
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': 'logs/debug2.log',
-#         },
-#     },
-#     'loggers': {
-#         '': {
-#             'handlers': ['file'],
-#             'level': 'DEBUG',
-#             'propagate': True,
-#         },
-#     },
 
-# 'handlers': {
-#     'file': {
-#         'class': 'logging.handlers.TimedRotatingFileHandler',
-#         'filename': log_directory,
-#         'when': 'D',
-#         'interval': 1,
-#         'backupCount': 90,
-#         'formatter': 'verbose'
-#     },
-# },
-# 'loggers': {
-#     'todo_project': {
-#         'handlers': ['file'],
-#         'propagate': False,
-#     }
-
-# },
-# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
