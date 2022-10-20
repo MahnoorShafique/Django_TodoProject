@@ -14,5 +14,9 @@ pep8==1.7.1
     # via -r todo_app/requirements/base.in
 psycopg2-binary==2.9.4
     # via -r todo_app/requirements/base.in
+python-dateutil==2.8.2
+    # via -r todo_app/requirements/base.in
+six==1.16.0
+    # via python-dateutil
 sqlparse==0.4.3
     # via django

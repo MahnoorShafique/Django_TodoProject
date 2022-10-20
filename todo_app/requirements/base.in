@@ -4,3 +4,4 @@ django
 psycopg2-binary
 isort
 pep8
+python-dateutil

@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+#name of application is app
+  app:
+    build: . # dot specifies same directory has Dockerfile
+    # voume here describes the folder that resides on os within the container
+    volumes: 
+      - .:/django  # /django is the working directory in container as described in Dockerfile
+# .:/django represents copy/mirror whatever is in local computer file into /django directory in container
+    ports:
+      - 8000:8000 # first 8000 is on our computer and secong 8000 is in container
+  # our image is named 'app' as seen on line 4 we will give it a tag of django
+    image: app:django 
+    container_name: django_container
+    command: python manage.py runserver 0.0.0.0:8000
+    # depends_on shows db service should run first.
+    depends_on:
+      - db 
+  db:
+  #pulling postgres image from docker hub.
+    image: postgres
+    # below statements will create ./data/db in local and 
+    #map to /var/lib/postgresql/data in container
+    volumes:
+        - ./data/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+        - POSTGRES_DB=todo_db
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=admin@123
+    container_name: postgres_db
+         
+
+
+
+# just run command 
+# 1/ docker-compose up
+
+#docker exec -it django_container /bin/bash
+# above statement run a command in one of your container. 
+#-it open interactive terminal mode.start bash shell

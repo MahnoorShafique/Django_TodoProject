@@ -11,3 +11,11 @@ django.utils.autoreload trigger_reload INFO 20 251 2022-10-18 06:20:30,307 autor
 django.utils.autoreload run_with_reloader INFO 20 637 2022-10-18 06:20:30,783 autoreload 63876 140631382642688 Watching for file changes with StatReloader
 django.utils.autoreload trigger_reload INFO 20 251 2022-10-18 06:26:20,329 autoreload 63876 140631382642688 /home/mahnoor/PycharmProjects/todo_project/todo_project/settings.py changed, reloading.
 todo_app.views delete ERROR 40 103 2022-10-18 06:27:15,538 views 66758 140413652432448 ['“9a7a7c35-9f1b-4a81-bc35-b1d24f751f5” is not a valid UUID.']
+todo_app.views post ERROR 40 41 2022-10-20 07:54:36,479 views 7 139723862185728 relation "todo_app_todo" does not exist
+LINE 1: INSERT INTO "todo_app_todo" ("task_name", "task_id", "create...
+                    ^
+
+todo_app.views post ERROR 40 41 2022-10-20 07:55:28,028 views 7 139723862185728 relation "todo_app_todo" does not exist
+LINE 1: INSERT INTO "todo_app_todo" ("task_name", "task_id", "create...
+                    ^
+
