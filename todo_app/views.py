@@ -69,6 +69,8 @@ class TodoView(View):
         id_ = request.GET.get('id')
         data_dict = json.loads(request.body)
         date_data = data_dict.get("due_date", 0)
+        import pdb
+        pdb.set_trace()
         try:
             if (isinstance(date_data, str)):
                 converted_date = parser.parse(date_data)
@@ -80,6 +82,7 @@ class TodoView(View):
                 model_obj = Todo.objects.get(task_id=id_)
                 for attr, value in data_dict.items():
                     setattr(model_obj, attr, value)
+                    breakpoint()
                 model_obj.save()
                 return_data = {
                     "msg": f'Data updated against {model_obj.task_name}',
@@ -87,6 +90,7 @@ class TodoView(View):
                 }
                 return JsonResponse(return_data)
         except Exception as e:
+            breakpoint()
             logger.error(str(e))
             return {}
 
@@ -108,6 +112,6 @@ class TodoView(View):
         except Exception as e:
             logger.error(str(e))
             response = {
-                "msg": "Id does not exists in db"
+                "msg": "Error in id"
             }
             return JsonResponse(response)

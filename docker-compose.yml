@@ -16,6 +16,8 @@ services:
     # depends_on shows db service should run first.
     depends_on:
       - db 
+    tty: true
+    stdin_open: true
   db:
   #pulling postgres image from docker hub.
     image: postgres
@@ -29,7 +31,7 @@ services:
         - POSTGRES_DB=todo_db
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=admin@123
-    container_name: postgres_db
+    container_name: localhost
          
 
 
