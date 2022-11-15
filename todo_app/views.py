@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 @method_decorator(csrf_exempt, name='dispatch')
 class TodoView(View):
     """Creating todo model"""
-
+    #new_branch   hrhfuerbuhgurgrugr
     def post(self, request):
         data_dict = json.loads(request.body)
         date_data = data_dict["due_date"]
