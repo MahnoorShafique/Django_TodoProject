@@ -14,7 +14,7 @@ from .models import Todo
 
 logger = logging.getLogger(__name__)
 
-
+#adding this comment into main branch o test github action.
 @method_decorator(csrf_exempt, name='dispatch')
 class TodoView(View):
     """Creating todo model"""
