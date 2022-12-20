@@ -20,4 +20,5 @@ jobs:
   printing:
     runs-on: ubuntu-latest
     steps:
-      run: echo hi mahnoor
+     - name: myjob
+       run: echo hi mahnoor
